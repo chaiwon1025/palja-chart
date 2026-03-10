@@ -1,0 +1,152 @@
+"use client";
+
+import { useActionState, useRef, useEffect } from "react";
+import { analyzeBirthdate, type ActionState } from "./actions";
+import ReportCard from "@/components/report-card";
+
+const initialState: ActionState = {};
+
+export default function PaljaPage() {
+  const [state, formAction, isPending] = useActionState(
+    analyzeBirthdate,
+    initialState
+  );
+
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (state.report && resultRef.current) {
+      resultRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [state.report]);
+
+  return (
+    <main className="min-h-screen bg-background px-5 pb-20 pt-16">
+      <div className="mx-auto max-w-[420px]">
+        {/* ── Hero ── */}
+        <div className="relative mb-10 text-center">
+          {/* 상승장 그래프 워터마크 */}
+          <svg
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[55%] select-none"
+            width="260"
+            height="80"
+            viewBox="0 0 260 80"
+            fill="none"
+            style={{ opacity: 0.06 }}
+          >
+            <polyline
+              points="0,70 30,65 55,60 80,55 100,50 115,40 135,42 155,30 175,25 195,18 215,22 235,10 260,5"
+              stroke="#a78bfa"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* 캔들 힌트 */}
+            <line x1="55" y1="55" x2="55" y2="68" stroke="#22c55e" strokeWidth="2" />
+            <line x1="115" y1="34" x2="115" y2="46" stroke="#22c55e" strokeWidth="2" />
+            <line x1="175" y1="18" x2="175" y2="30" stroke="#22c55e" strokeWidth="2" />
+            <line x1="235" y1="6" x2="235" y2="16" stroke="#22c55e" strokeWidth="2" />
+          </svg>
+          <h1 className="relative font-[family-name:var(--font-brush)] text-[44px] text-white">
+            팔자차트
+          </h1>
+          <p className="mt-3 text-[15px] leading-[1.8] text-white/60">
+            당신은 존버형인가, 추격매수형인가
+          </p>
+          <p className="mt-1 text-[13px] text-white/35">
+            사주로 보는 내 투자 팔자 테스트
+          </p>
+        </div>
+
+        {/* ── Form Card ── */}
+        <div className="rounded-2xl bg-card p-6">
+          <form action={formAction} className="space-y-5">
+            {/* Calendar Type */}
+            <fieldset className="flex gap-1 rounded-xl bg-card-light p-1">
+              <label className="flex-1">
+                <input
+                  type="radio"
+                  name="calendarType"
+                  value="solar"
+                  defaultChecked
+                  className="peer sr-only"
+                />
+                <span className="block cursor-pointer rounded-lg py-2.5 text-center text-sm font-medium text-white/40 transition-colors peer-checked:bg-card peer-checked:text-white">
+                  양력
+                </span>
+              </label>
+              <label className="flex-1">
+                <input
+                  type="radio"
+                  name="calendarType"
+                  value="lunar"
+                  className="peer sr-only"
+                />
+                <span className="block cursor-pointer rounded-lg py-2.5 text-center text-sm font-medium text-white/40 transition-colors peer-checked:bg-card peer-checked:text-white">
+                  음력
+                </span>
+              </label>
+            </fieldset>
+
+            {/* Date Inputs */}
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                { id: "year", label: "출생 연도", placeholder: "1990", min: 1900, max: 2100 },
+                { id: "month", label: "월", placeholder: "1", min: 1, max: 12 },
+                { id: "day", label: "일", placeholder: "15", min: 1, max: 31 },
+              ].map((field) => (
+                <div key={field.id}>
+                  <label
+                    htmlFor={field.id}
+                    className="mb-1.5 block text-[11px] font-medium tracking-wider text-white/35 uppercase"
+                  >
+                    {field.label}
+                  </label>
+                  <input
+                    id={field.id}
+                    name={field.id}
+                    type="number"
+                    placeholder={field.placeholder}
+                    min={field.min}
+                    max={field.max}
+                    required
+                    className="w-full rounded-xl bg-card-light px-3 py-3 text-center text-sm font-medium text-white placeholder-white/20 transition-colors focus:bg-[#2a2a3d] focus:outline-none focus:ring-2 focus:ring-purple-500/40"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <button
+              type="submit"
+              disabled={isPending}
+              className="w-full cursor-pointer rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 py-3.5 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 active:opacity-80"
+            >
+              {isPending ? "분석 중..." : "내 투자 팔자 확인하기"}
+            </button>
+          </form>
+
+          {state.error && (
+            <div className="mt-5 rounded-xl bg-red-500/10 p-4 text-center text-sm text-red-400">
+              {state.error}
+            </div>
+          )}
+        </div>
+
+        {/* Tagline */}
+        {!state.report && (
+          <p className="mt-6 text-center text-xs leading-relaxed text-white/25">
+            사주 일주 기반 투자 성향 분석<br />
+            MBTI보다 정확할 수도 있습니다 (아닐 수도)
+          </p>
+        )}
+
+        {/* Result */}
+        {state.report && (
+          <div ref={resultRef} className="mt-8">
+            <ReportCard report={state.report} />
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
