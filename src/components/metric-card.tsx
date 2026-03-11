@@ -15,7 +15,7 @@ export default function MetricCard({ metric }: { metric: MetricResult }) {
   };
 
   return (
-    <div className="rounded-xl bg-card p-5">
+    <div className="rounded-xl border border-white/[0.04] bg-card p-5">
       <div className="mb-1 flex items-start justify-between gap-2">
         <div>
           <h4 className={`text-sm font-bold ${colors.text}`}>{metric.label}</h4>
@@ -23,7 +23,7 @@ export default function MetricCard({ metric }: { metric: MetricResult }) {
             &ldquo;{metric.description}&rdquo;
           </p>
         </div>
-        <span className="shrink-0 rounded-lg bg-card-light px-2.5 py-1 text-[11px] font-bold text-white/80">
+        <span className="shrink-0 rounded-lg bg-card-elevated px-2.5 py-1 text-[11px] font-bold text-white/80">
           {metric.percentileText}
         </span>
       </div>
