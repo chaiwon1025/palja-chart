@@ -3,54 +3,50 @@ import type { PercentileLabel } from "@/lib/types";
 interface MetricCardProps {
   title: string;
   subtitle: string;
-  emoji: string;
   metric: PercentileLabel;
-  barColor: string;
+  colorClass: string;
+  fillClass: string;
 }
 
-export function MetricCard({ title, subtitle, emoji, metric, barColor }: MetricCardProps) {
+export function MetricCard({ title, subtitle, metric, colorClass, fillClass }: MetricCardProps) {
   const pct = metric.value;
 
-  // 위험도에 따른 라벨 스타일
-  const getLabelColor = (value: number) => {
-    if (value >= 80) return "text-red-400";
-    if (value >= 60) return "text-orange-400";
-    if (value >= 40) return "text-gold-300";
-    if (value >= 20) return "text-emerald-400";
-    return "text-blue-400";
-  };
-
   return (
-    <div className="group rounded-2xl bg-surface-card border border-border-subtle p-5 transition-all hover:glow-border hover:bg-surface-elevated">
-      {/* 상단: 타이틀 + 퍼센트 */}
-      <div className="flex items-start justify-between mb-1">
-        <div className="flex items-center gap-2.5">
-          <span className="text-xl" dangerouslySetInnerHTML={{ __html: emoji }} />
-          <div>
-            <p className="text-white text-sm font-semibold">{title}</p>
-            <p className="text-gray-600 text-xs mt-0.5">{subtitle}</p>
-          </div>
+    <div className="group">
+      {/* 상단: 타이틀 + 점수 */}
+      <div className="flex items-end justify-between mb-1.5">
+        <div>
+          <p className="font-serif-kr text-[14px] font-bold text-white mb-0.5">
+            {title}
+          </p>
+          <p className="text-[10px] text-gray-600">{subtitle}</p>
         </div>
         <div className="text-right">
-          <p className={`text-2xl font-black tabular-nums ${getLabelColor(pct)}`}>
+          <p className={`font-playfair text-3xl font-black leading-none ${colorClass}`}>
             {pct}
           </p>
-          <p className="text-gray-600 text-[10px] tracking-wider">/ 100</p>
+          <p className="text-[9px] text-gray-600 mt-1 tracking-[0.5px]">
+            {metric.label}
+          </p>
         </div>
       </div>
 
-      {/* 바 */}
-      <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-surface-elevated">
+      {/* 게이지 바 */}
+      <div className="gauge-track mt-2.5">
         <div
-          className={`h-full rounded-full bg-gradient-to-r ${barColor} animate-bar-fill transition-all`}
+          className={`gauge-fill bg-gradient-to-r ${fillClass} animate-bar-fill`}
           style={{ width: `${pct}%` }}
         />
       </div>
 
-      {/* 라벨 */}
-      <p className="mt-2 text-right text-xs text-gray-500">
-        {metric.label}
-      </p>
+      {/* 스케일 마커 */}
+      <div className="flex justify-between mt-1">
+        <span className="text-[7px] text-gray-700">0</span>
+        <span className="text-[7px] text-gray-700">25</span>
+        <span className="text-[7px] text-gray-700">50</span>
+        <span className="text-[7px] text-gray-700">75</span>
+        <span className="text-[7px] text-gray-700">100</span>
+      </div>
     </div>
   );
 }
