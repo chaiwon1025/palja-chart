@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0d0d1a; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 40px; font-family: sans-serif; }
+.wrap { width: 480px; }
+.retro {
+  background: #1a1a2e; padding: 40px 32px; border: 3px solid #e94560;
+  position: relative; overflow: hidden;
+}
+.retro::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+  pointer-events: none;
+}
+.header { text-align: center; margin-bottom: 32px; position: relative; }
+.header h2 { font-family: 'Black Han Sans', sans-serif; font-size: 44px; color: #e94560; text-shadow: 3px 3px 0 #16213e; letter-spacing: 6px; }
+.header p { font-family: 'Do Hyeon', sans-serif; font-size: 13px; color: #0f3460; background: #e94560; display: inline-block; padding: 3px 16px; margin-top: 10px; }
+.pillar-box { text-align: center; padding: 28px; margin-bottom: 24px; border: 2px dashed #0f3460; position: relative; }
+.pillar-label { font-size: 11px; color: #e94560; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
+.pillar { font-family: 'Black Han Sans', sans-serif; font-size: 88px; color: #eee; line-height: 1; text-shadow: 5px 5px 0 #e94560; }
+.archetype { display: inline-block; margin-top: 14px; font-family: 'Do Hyeon', sans-serif; font-size: 16px; color: #1a1a2e; background: #53d8fb; padding: 5px 20px; transform: rotate(2deg); }
+.summary { font-family: 'Do Hyeon', sans-serif; font-size: 16px; color: #ccc; text-align: center; margin-bottom: 28px; line-height: 1.7; position: relative; }
+.metric { display: flex; align-items: center; gap: 14px; padding: 12px; margin-bottom: 10px; border: 1px solid #0f3460; background: rgba(15,52,96,0.3); position: relative; }
+.metric-name { font-family: 'Do Hyeon', sans-serif; font-size: 16px; color: #53d8fb; flex: 1; }
+.metric-bar { width: 100px; height: 14px; background: #0f3460; display: flex; gap: 2px; padding: 2px; }
+.metric-block { height: 100%; flex: 1; }
+.metric-block.on { background: #e94560; }
+.metric-block.off { background: #1a1a2e; }
+.metric-val { font-family: 'Do Hyeon', sans-serif; font-size: 22px; color: #e94560; width: 36px; text-align: right; }
+.title-tag { text-align: center; font-weight: 700; font-size: 22px; color: #e94560; margin-bottom: 10px; }
+.title-sub { text-align: center; color: #53d8fb; font-size: 13px; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="title-tag">3. 레트로 / Y2K</div>
+  <div class="title-sub">MZ세대 타겟, 바이럴용</div>
+  <div class="retro">
+    <div class="header">
+      <h2>팔자차트</h2>
+      <p>투자 DNA 분석</p>
+    </div>
+    <div class="pillar-box">
+      <div class="pillar-label">YOUR PILLAR</div>
+      <div class="pillar">갑자</div>
+      <span class="archetype">선구적 개척자</span>
+    </div>
+    <div class="summary">
+      새로운 시장에 누구보다 먼저 뛰어드는 선구자.<br>
+      남들이 망설일 때 이미 매수 버튼을 누르고 있다.
+    </div>
+    <div class="metric">
+      <span class="metric-name">🔥 FOMO 반응도</span>
+      <div class="metric-bar">
+        <div class="metric-block on"></div>
+        <div class="metric-block on"></div>
+        <div class="metric-block on"></div>
+        <div class="metric-block on"></div>
+        <div class="metric-block off"></div>
+      </div>
+      <span class="metric-val">72</span>
+    </div>
+    <div class="metric">
+      <span class="metric-name">🏋️ 장기투자 체력</span>
+      <div class="metric-bar">
+        <div class="metric-block on"></div>
+        <div class="metric-block on"></div>
+        <div class="metric-block off"></div>
+        <div class="metric-block off"></div>
+        <div class="metric-block off"></div>
+      </div>
+      <span class="metric-val">45</span>
+    </div>
+    <div class="metric">
+      <span class="metric-name">⚡ 레버리지 유혹도</span>
+      <div class="metric-bar">
+        <div class="metric-block on"></div>
+        <div class="metric-block on"></div>
+        <div class="metric-block on"></div>
+        <div class="metric-block on"></div>
+        <div class="metric-block on"></div>
+      </div>
+      <span class="metric-val">88</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

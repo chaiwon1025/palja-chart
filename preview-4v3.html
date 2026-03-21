@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #d6d0c4; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 48px 20px; font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; }
+.wrap { width: 480px; }
+
+.card {
+  background: #FCFBF9;
+  padding: 0;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* 골드 탑 라인 */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #b8960c, #d4af37, #b8960c);
+}
+
+/* 마스트헤드 */
+.masthead {
+  text-align: center;
+  padding: 44px 40px 0;
+  margin-bottom: 0;
+}
+.masthead-top {
+  font-size: 9px;
+  color: #b0a898;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+.masthead h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #1a1a1a;
+  letter-spacing: 14px;
+  margin-bottom: 14px;
+}
+.masthead-rule {
+  width: 100%;
+  height: 0;
+  border: none;
+  border-top: 1px solid #1a1a1a;
+  position: relative;
+  margin-bottom: 0;
+}
+.masthead-rule::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0; right: 0;
+  border-top: 0.5px solid #ccc;
+}
+.masthead-meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 0.5px solid #ddd;
+}
+.masthead-meta span {
+  font-size: 9px;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+
+/* 헤드라인 */
+.headline-area {
+  padding: 36px 40px 32px;
+}
+.headline {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+  margin-bottom: 0;
+}
+
+/* 일주 카드 */
+.pillar-area {
+  margin: 0 40px 0;
+  padding: 32px 0;
+  border-top: 0.5px solid #e0e0e0;
+  border-bottom: 0.5px solid #e0e0e0;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.pillar-char {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: #1a1a1a;
+  line-height: 1;
+  letter-spacing: 4px;
+  flex-shrink: 0;
+}
+.pillar-info { flex: 1; }
+.archetype-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #b8960c;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+.pillar-summary {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+/* 지표 영역 */
+.metrics-area {
+  padding: 32px 40px 40px;
+}
+.section-label {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 500;
+  color: #b0a898;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.metric {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 0.5px solid #eee;
+}
+.metric:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.metric-left { flex: 1; padding-right: 24px; }
+.metric-name {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 15px;
+  color: #1a1a1a;
+  font-weight: 700;
+  margin-bottom: 3px;
+  letter-spacing: 0.3px;
+}
+.metric-sub {
+  font-size: 11px;
+  color: #b0a898;
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+
+/* 프로그레스 바 */
+.bar-track {
+  width: 100%;
+  height: 2px;
+  background: #eee;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  background: #1a1a1a;
+  position: relative;
+}
+.bar-fill::after {
+  content: '';
+  position: absolute;
+  right: -1px; top: -2.5px;
+  width: 5px; height: 5px;
+  border: 1.5px solid #1a1a1a;
+  background: #FCFBF9;
+  border-radius: 50%;
+}
+
+.metric-right {
+  text-align: right;
+  flex-shrink: 0;
+  min-width: 56px;
+}
+.metric-score {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: #1a1a1a;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.metric-rank {
+  font-size: 9.5px;
+  color: #b0a898;
+  margin-top: 4px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* 푸터 */
+.card-footer {
+  margin: 0 40px;
+  padding: 16px 0;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-footer span {
+  font-size: 8px;
+  color: #bbb;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.card-footer-dot {
+  width: 4px; height: 4px;
+  background: #d4af37;
+  border-radius: 50%;
+}
+
+.card-bottom-pad { height: 32px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <!-- 마스트헤드 -->
+    <div class="masthead">
+      <div class="masthead-top">Investment Personality Report</div>
+      <h2>팔 자 차 트</h2>
+      <hr class="masthead-rule">
+      <div class="masthead-meta">
+        <span>Vol. 01</span>
+        <span>투자성향분석</span>
+        <span>2025</span>
+      </div>
+    </div>
+
+    <!-- 헤드라인 -->
+    <div class="headline-area">
+      <div class="headline">
+        「갑자」일주 소유자,<br>투자 전선에 뛰어들다
+      </div>
+    </div>
+
+    <!-- 일주 정보 -->
+    <div class="pillar-area">
+      <div class="pillar-char">갑자</div>
+      <div class="pillar-info">
+        <div class="archetype-tag">선구적 개척자</div>
+        <div class="pillar-summary">
+          새로운 시장에 누구보다 먼저 뛰어드는 선구자. 남들이 망설일 때 이미 매수 버튼을 누르고 있다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 지표 -->
+    <div class="metrics-area">
+      <div class="section-label">Investment Metrics</div>
+
+      <div class="metric">
+        <div class="metric-left">
+          <div class="metric-name">FOMO 반응도</div>
+          <div class="metric-sub">급등주 반응 속도</div>
+          <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+        </div>
+        <div class="metric-right">
+          <div class="metric-score">72</div>
+          <div class="metric-rank">상위 28%</div>
+        </div>
+      </div>
+
+      <div class="metric">
+        <div class="metric-left">
+          <div class="metric-name">장기투자 체력</div>
+          <div class="metric-sub">존버 지속력</div>
+          <div class="bar-track"><div class="bar-fill" style="width:45%"></div></div>
+        </div>
+        <div class="metric-right">
+          <div class="metric-score">45</div>
+          <div class="metric-rank">하위 55%</div>
+        </div>
+      </div>
+
+      <div class="metric">
+        <div class="metric-left">
+          <div class="metric-name">레버리지 유혹도</div>
+          <div class="metric-sub">빚투 확률</div>
+          <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="metric-right">
+          <div class="metric-score">88</div>
+          <div class="metric-rank">상위 12%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 푸터 -->
+    <div class="card-footer">
+      <span>Palja Chart</span>
+      <div class="card-footer-dot"></div>
+      <span>All Rights Reserved</span>
+    </div>
+    <div class="card-bottom-pad"></div>
+  </div>
+</div>
+</body>
+</html>

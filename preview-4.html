@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #e8e4dc; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 40px; font-family: sans-serif; }
+.wrap { width: 480px; }
+.newspaper {
+  background: #fdfcf8; padding: 48px 36px;
+  border-top: 5px double #111; border-bottom: 5px double #111;
+}
+.header { text-align: center; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 2px solid #111; }
+.header h2 { font-family: 'Noto Serif KR', serif; font-size: 40px; font-weight: 900; color: #111; letter-spacing: 8px; margin-bottom: 10px; }
+.dateline { font-size: 12px; color: #888; letter-spacing: 3px; }
+.headline { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; color: #111; text-align: center; line-height: 1.6; margin-bottom: 24px; }
+.pillar-section { display: flex; gap: 24px; align-items: center; margin-bottom: 28px; padding: 24px; border: 1px solid #ddd; background: #f9f7f2; }
+.pillar { font-family: 'Noto Serif KR', serif; font-size: 68px; font-weight: 900; color: #111; line-height: 1; }
+.pillar-desc { flex: 1; }
+.archetype-label { font-size: 13px; color: #c0392b; font-weight: 700; letter-spacing: 2px; margin-bottom: 8px; }
+.summary { font-family: 'Noto Serif KR', serif; font-size: 14px; color: #444; line-height: 1.9; }
+.section-title { font-size: 12px; font-weight: 900; color: #111; letter-spacing: 4px; text-transform: uppercase; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 10px 0; margin-bottom: 20px; text-align: center; }
+.metric { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px dotted #ccc; }
+.metric:last-child { border-bottom: none; }
+.metric-name { font-family: 'Noto Serif KR', serif; font-size: 16px; color: #111; font-weight: 700; }
+.metric-detail { font-size: 13px; color: #888; margin-left: 10px; font-weight: 400; }
+.metric-val { font-family: 'Noto Serif KR', serif; font-size: 26px; font-weight: 900; color: #c0392b; }
+.metric-label { font-size: 11px; color: #888; text-align: right; }
+.title-tag { text-align: center; font-weight: 700; font-size: 22px; color: #333; margin-bottom: 10px; }
+.title-sub { text-align: center; color: #888; font-size: 13px; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="title-tag">4. 신문 / 리포트</div>
+  <div class="title-sub">진지하고 권위있는 분석 느낌</div>
+  <div class="newspaper">
+    <div class="header">
+      <h2>팔 자 차 트</h2>
+      <div class="dateline">제 1호 · 투자성향분석 · 2025</div>
+    </div>
+    <div class="headline">
+      「갑자」일주 소유자,<br>투자 전선에 뛰어들다
+    </div>
+    <div class="pillar-section">
+      <div class="pillar">갑子</div>
+      <div class="pillar-desc">
+        <div class="archetype-label">▶ 선구적 개척자</div>
+        <div class="summary">
+          새로운 시장에 누구보다 먼저 뛰어드는 선구자. 남들이 망설일 때 이미 매수 버튼을 누르고 있다.
+        </div>
+      </div>
+    </div>
+    <div class="section-title">투자 성향 지표</div>
+    <div class="metric">
+      <span class="metric-name">FOMO 반응도 <span class="metric-detail">급등주 반응 속도</span></span>
+      <div>
+        <span class="metric-val">72</span>
+        <div class="metric-label">상위 28%</div>
+      </div>
+    </div>
+    <div class="metric">
+      <span class="metric-name">장기투자 체력 <span class="metric-detail">존버 지속력</span></span>
+      <div>
+        <span class="metric-val">45</span>
+        <div class="metric-label">하위 55%</div>
+      </div>
+    </div>
+    <div class="metric">
+      <span class="metric-name">레버리지 유혹도 <span class="metric-detail">빚투 확률</span></span>
+      <div>
+        <span class="metric-val">88</span>
+        <div class="metric-label">상위 12%</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
